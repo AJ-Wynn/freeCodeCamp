@@ -1,0 +1,78 @@
+html {
+  background-color: EBD9B4;
+}
+
+#navbar {
+  position: fixed;
+}
+
+#main-doc {
+  margin-left: 250px;
+  width: 60%;
+  /* height: auto makes element's height automatically adjust based on its contents */
+  height: auto;
+  padding: 20px;
+  background-color: F9EFDB;
+}
+
+
+nav header {
+  color: black;
+
+}
+
+nav a {
+  color: 638889;
+  text-decoration: none;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+nav>ul {
+  margin-top: -0.1px;
+}
+
+nav ul {
+  list-style-type: square;
+}
+
+@media (max-width: 400px) {
+  #main-doc {
+    width: 100%
+  }
+}
+
+.h1 {
+  font-weight: bolder;
+  font-size: 2em;
+}
+
+.h2 {
+  font-weight: bolder;
+  font-size: 1.5em;
+}
+
+.h3 {
+  font-weight: bolder;
+  font-size: 1.17em;
+}
+
+pre {
+  max-width: 98%;
+  /* enable horizontal scrolling if width of viewport isn't large enough to fit whole line */
+  overflow: auto;
+  /* Preserve line breaks and wrap long lines */
+  white-space: pre-wrap;
+  font-size: 0.9em;
+  background-color: #d4e2d2;
+  border-bottom: 1px solid #114d5c;
+  border-top: 1px solid #114d5c;
+  padding: 0 5px;
+  margin: 0 auto;
+}
+
+main {
+  display: block;
+}

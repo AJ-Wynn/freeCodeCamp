@@ -1,0 +1,895 @@
+<!-- Used animate on scroll library -->
+<!-- Inspo: http://findmatthew.com/ -->
+<!-- When adding additional projects, adjust grid and viewport height, add delay to fade-up animation -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Personal Portfolio - Andrew Wynn</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet'>
+    <link href="https://fonts.cdnfonts.com/css/gentium-basic" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Marvel' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Source Code Pro' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Maven Pro' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather Sans' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        * {
+            font-family: Marvel;
+        }
+
+        html {
+            scroll-padding-top: 70px;
+            overflow-x: hidden;
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            * {
+                scroll-behavior: smooth;
+            }
+        }
+
+        @media (max-width: 1100px) {
+            nav>ul>li>a {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                display: none;
+            }
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            position: fixed;
+            width: 100%;
+            height: 70px;
+            z-index: 1000;
+            background-color: black;
+            border-bottom: 1px solid #3D5634;
+        }
+
+        nav>ul {
+            list-style-type: none;
+            display: flex;
+            width: 50%;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            align-items: center;
+            position: relative;
+            left: 50%;
+            transform: translateX(-10%);
+            top: 2px;
+        }
+
+        li>a {
+            text-decoration: none;
+            color: #a3b1a2;
+            font-size: 1rem;
+            letter-spacing: 3px;
+            font-family: Source Code
+        }
+
+        nav>ul>li {
+            padding: 0.6rem 0;
+            position: relative;
+        }
+
+        nav>ul>li>a:hover {
+            cursor: pointer;
+            color: #FFFFFF;
+        }
+
+        nav>ul>li>a:hover::after {
+            display: block;
+            font-size: 2.5rem;
+            content: ".";
+            position: absolute;
+            top: -3px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        #welcome-section {
+            width: 100vw;
+            height: 100vh;
+            min-height: 1000px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #title {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-30%);
+            left: 0;
+            right: 0;
+            color: #fff;
+            text-align: center;
+            font-size: 3.8rem;
+            font-weight: 300px;
+            letter-spacing: 1px;
+            margin-top: -60px;
+            white-space: nowrap;
+
+        }
+
+        #title span {
+            font-family: Marvel;
+            color: #a3b1a2;
+            overflow: hidden;
+        }
+
+        #title .p2 {
+            color: #fff;
+            font-weight: bold;
+        }
+
+        #title .p3 {
+            font-size: 1.8rem;
+        }
+
+        .arrow-button a {
+            color: white;
+            z-index: 10;
+            font-size: 1.2rem;
+            position: absolute;
+            top: 160px;
+            transform: translateX(-50%);
+            border: 1px solid white;
+            padding: 10px;
+            text-decoration: none;
+            font-family: Marvel;
+            font-weight: 300px;
+            letter-spacing: 1px;
+        }
+
+        .view-more {
+            transition: background-color 0.3s ease;
+        }
+
+        .arrow-button a:hover {
+            background-color: rgba(163, 177, 162, 50%);
+            border: none;
+        }
+
+        .arrow {
+            transform: rotate(180deg);
+        }
+
+        .arrow-button a:hover img {
+            transform: rotate(90deg) translate(-6px, -5px);
+        }
+
+        .arrow img {
+            transition: transform 0.3s ease;
+            padding-left: 15px;
+            transform-origin: center center;
+        }
+
+        #about {
+            border-top: 1px solid #3D5634;
+            width: 100%;
+            height: 40vh;
+            min-height: 370px;
+            background-color: #052222;
+            color: white;
+
+        }
+
+        @media (max-width: 815px) {
+            #about {
+                width: 100%;
+                height: 75vh;
+            }
+        }
+
+        @media (max-width: 495px) {
+            #about {
+                width: 100%;
+                height: 95vh;
+            }
+        }
+
+        #about h1 {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 20px auto 0px;
+            letter-spacing: 2px;
+        }
+
+        .about-separator {
+            width: 65px;
+            height: 2px;
+            background-color: white;
+        }
+
+        #about h2,
+        #about p {
+            font-family: Maven Pro;
+        }
+
+        #about h2 {
+            padding-left: 15%;
+            font-size: 1.6rem;
+        }
+
+        .hexagon-container {
+            width: 100px;
+            height: 100px;
+            background-color: #a3b1a2;
+            position: relative;
+            margin: 30px;
+            -webkit-clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
+            clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hexagon-container img {
+            width: 70%;
+            height: 70%;
+            object-fit: cover;
+        }
+
+        .hexagon-container.python img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .hexagon-container.javascipt img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .hexagon-container.sql img {
+            width: 60%;
+            height: 60%;
+        }
+
+        .flex-container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .hexagon-plus-text p {
+            position: relative;
+            left: 50%;
+            transform: translateX(-20%);
+            top: -20px;
+            font-size: 1.2rem;
+            font-weight: bolder;
+        }
+
+        .hexagon-plus-text .p2 {
+            transform: translateX(-27%);
+        }
+
+        .hexagon-plus-text .p3 {
+            transform: translateX(-15%);
+        }
+
+        .hexagon-plus-text .p4,
+        .hexagon-plus-text .p5 {
+            transform: translateX(-10%);
+        }
+
+        #projects {
+            width: 100%;
+            height: 95vh;
+            min-height: 900px;
+            background-color: #052222;
+            color: white;
+            position: relative;
+            border: 1px solid transparent;
+        }
+
+        #projects h1 {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 20px auto 0px;
+            letter-spacing: 2px;
+        }
+
+        .projects-grid {
+            width: 80%;
+            height: auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            position: relative;
+            top: 5%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .card-wrapper.one {
+            grid-column: 1 / span 1;
+        }
+
+        .card-wrapper.two {
+            grid-column: 2 / span 1;
+        }
+
+        .card-wrapper.three {
+            grid-column: 3 / span 1;
+        }
+
+        .card-wrapper.four {
+            grid-column: 1 / span 1;
+        }
+
+        .card-wrapper.five {
+            grid-column: 2 / span 1;
+        }
+
+        /* Hover card + text effect */
+
+        .project-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            transition: all 0.3s ease-in-out;
+            z-index: 20;
+            box-shadow: 10px 10px 53px 0px rgba(0, 0, 0, 0.49);
+        }
+
+        .card-wrapper {
+            position: relative;
+            width: 100%;
+            height: 26vh;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 10px 10px 53px 0px rgba(0, 0, 0, 0.49);
+        }
+
+        .card-wrapper:hover .project-image {
+            filter: blur(1.4px);
+            transform: scale(1.5);
+            overflow: hidden;
+            transition: all 0.3s linear;
+            box-shadow: inset -6px -1px 32px 0px rgba(0, 0, 0, 0.75);
+        }
+
+        .card-wrapper:hover .card-bottom {
+            transform: translate(0%, -50%);
+            transition: all 0.3s ease;
+            background-color: rgba(6, 34, 34, 0.75);
+        }
+
+        .card-top {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .card-bottom {
+            width: 100%;
+            position: absolute;
+            z-index: 20;
+            top: 50%;
+            background-color: rgba(110, 122, 92, 0);
+            padding: 100px 20px;
+            color: #fff;
+            transform: translate(100%, -50%);
+        }
+
+        .top-text {
+            font-size: 30px;
+            letter-spacing: 1px;
+            font-family: Merriweather Sans;
+        }
+
+
+        .bottom-text {
+            font-size: 20px;
+            color: #A3B1A2;
+        }
+
+        .project-button {
+            position: relative;
+            display: block;
+            cursor: pointer;
+            margin-top: 25px;
+            border: 1px solid white;
+            background-color: rgba(1, 1, 1, 0);
+            border-radius: 3px;
+            color: #fff;
+            padding: 5px 20px;
+            font-family: Merriweather Sans;
+            font-size: 20px;
+            letter-spacing: 1px;
+            transition: background-color 0.3s ease;
+        }
+
+        .card-bottom a {
+            text-decoration: none;
+        }
+
+        .project-button:hover {
+            background-color: rgba(163, 177, 162, 50%);
+            border: none;
+        }
+
+        @media (max-width: 1700px) {
+            .top-text {
+                font-size: 25px;
+            }
+
+            .bottom-text {
+                font-size: 15px;
+            }
+
+            .project-button {
+                font-size: 15px;
+            }
+        }
+
+        @media (max-width: 1400px) {
+            .top-text {
+                font-size: 20px;
+            }
+
+            .bottom-text {
+                font-size: 15px;
+            }
+
+            .project-button {
+                font-size: 15px;
+            }
+
+            #projects {
+                height: 90vh;
+            }
+        }
+
+        @media (max-width: 1140px) {
+            .top-text {
+                font-size: 15px;
+            }
+
+            .bottom-text {
+                font-size: 12px;
+            }
+
+            .project-button {
+                font-size: 10px;
+            }
+
+            #projects {
+                height: 75vh;
+            }
+        }
+
+        @media (max-width: 940px) {
+            .projects-grid {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .card-wrapper {
+                width: 500px;
+                height: auto;
+            }
+
+            .top-text {
+                font-size: 25px;
+            }
+
+            .bottom-text {
+                font-size: 15px;
+            }
+
+            .project-button {
+                font-size: 15px;
+            }
+
+            #projects {
+                height: 200vh;
+            }
+
+        }
+
+        #show-all {
+            width: 100%;
+            height: 20vh;
+            position: relative;
+            top: 10%;
+            background-color: #062222;
+        }
+
+        #show-all a {
+            text-decoration: none;
+        }
+
+        #show-all .show-all-button {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 10%;
+            cursor: pointer;
+            border: 1px solid white;
+            background-color: rgba(1, 1, 1, 0);
+            border-radius: 3px;
+            color: #fff;
+            padding: 7px 25px;
+            font-family: Merriweather Sans;
+            font-size: 20px;
+            letter-spacing: 1px;
+            transition: background-color 0.3s ease;
+        }
+
+        #show-all .show-all-button:hover {
+            background-color: rgba(163, 177, 162, 50%);
+            border: none;
+        }
+
+        #contact {
+            width: 100%;
+            height: 65vh;
+            min-height: 550px;
+            position: relative;
+            top: 0;
+            background-color: black;
+            border-left: 50px solid black;
+            border: 1px solid transparent;
+        }
+
+        .contact-left-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        #contact h1 {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 40px auto 0px;
+            color: white;
+            letter-spacing: 2px;
+        }
+
+        .contact-container {
+            position: relative;
+            top: 5%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-left {
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            gap: 4px;
+        }
+
+        .contact-inputs {
+            width: 400px;
+            height: 50px;
+            border: none;
+            outline: none;
+            padding-left: 10px;
+            font-weight: 500;
+            color: black;
+            border-radius: 2px;
+            font-size: 1.1rem;
+            background-color: white;
+        }
+
+        .contact-left textarea {
+            height: 140px;
+            padding-top: 15px;
+        }
+
+        .contact-inputs:focus {
+            border: 2px solid #3D5634;
+        }
+
+        .contact-inputs::placeholder {
+            color: black;
+        }
+
+        .contact-left button {
+            cursor: pointer;
+            border: 1px solid white;
+            background-color: rgba(1, 1, 1, 0);
+            border-radius: 3px;
+            color: #fff;
+            padding: 7px 25px;
+            font-family: Merriweather Sans;
+            font-size: 20px;
+            letter-spacing: 1px;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-left .submit-button {
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            padding-top: 20px;
+        }
+
+        .contact-left button:hover {
+            background-color: rgba(163, 177, 162, 50%);
+            border: none;
+        }
+
+        footer {
+            width: 100%;
+            height: 15vh;
+            min-height: 100px;
+            background-color: #082222;
+
+        }
+
+        footer .links-wrap {
+            width: 25%;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            position: relative;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .fa {
+            padding: 30px;
+            font-size: 40px;
+            width: 10px;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            transition: transform 0.3s ease-out;
+        }
+
+        .fa:hover {
+            transform: translateY(8px);
+        }
+
+        .fa:hover {
+            opacity: 0.8;
+        }
+    </style>
+
+</head>
+
+<body>
+    <header id="header">
+        <nav id="navbar">
+            <ul>
+                <li>
+                    <a href="#welcome-section" class="nav-link">HOME</a>
+                </li>
+                <li>
+                    <a href="#about" class="nav-link">ABOUT</a>
+                </li>
+                </li>
+                <li>
+                    <a href="#projects" class="nav-link">PORTFOLIO</a>
+                </li>
+                <li>
+                    <a href="#contact" class="nav-link">CONTACT</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <section id="welcome-section">
+        <div id="title">
+            <span class="p1">Hello, I'm</span>
+            <span class="p2">Andrew Wynn</span>
+            <br />
+            <span class="p3">Entry Level Software Developer</span>
+            <div class="arrow-button">
+                <a href="#about" class="view-more">View my
+                    work<span class="arrow"><img src="https://iili.io/J0VgcFt.png" width="16px" </span></a>
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.topology.min.js"></script>
+        <script>
+            VANTA.TOPOLOGY({
+                el: "#welcome-section",
+                mouseControls: true,
+                touchControls: true,
+                gyroControls: false,
+                minHeight: 200.00,
+                minWidth: 200.00,
+                scale: 1.00,
+                scaleMobile: 1.00,
+            })
+        </script>
+        <h1 class="hidden">.</h1>
+    </section>
+    <section id="about">
+        <div data-aos="fade-right" data-aos-duration="1000">
+            <h1>ABOUT</h1>
+        </div>
+        <div data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200">
+            <hr class="about-separator" />
+        </div>
+        <h2>Experience in:</h2>
+        <div class="flex-container">
+            <div class="hexagon-plus-text" data-aos="fade-right" data-aos-duration="500" data-aos-delay="0">
+                <div class="hexagon-container flutter">
+                    <img src="https://iili.io/JXIfmSR.png" alt="flutter-logo">
+                </div>
+                <p class="p1">Flutter</p>
+            </div>
+            <div class="hexagon-plus-text" data-aos="fade-right" data-aos-duration="500" data-aos-delay="100">
+                <div class="hexagon-container javascript">
+                    <img src="https://iili.io/J0XnvqJ.png" alt="javascript-logo">
+                </div>
+                <p class="p2">Javascript</p>
+            </div>
+            <div class="hexagon-plus-text" data-aos="fade-right" data-aos-duration="500" data-aos-delay="200">
+                <div class="hexagon-container python">
+                    <img src="https://iili.io/J0XCAwF.png" alt="python-logo">
+                </div>
+                <p>Python</p>
+            </div>
+            <div class="hexagon-plus-text" data-aos="fade-right" data-aos-duration="500" data-aos-delay="300">
+                <div class="hexagon-container html">
+                    <img src="https://iili.io/J0X53Ug.png" alt="html-logo">
+                </div>
+                <p class="p3">HTML</p>
+            </div>
+
+            <div class="hexagon-plus-text" data-aos="fade-right" data-aos-duration="500" data-aos-delay="400">
+                <div class="hexagon-container css">
+                    <img src="https://iili.io/J0X7Un2.png" alt="css-logo">
+                </div>
+                <p class="p4">CSS</p>
+            </div>
+        </div>
+    </section>
+    <section id="projects">
+        <div data-aos="fade-left" data-aos-duration="1000">
+            <h1>PROJECTS</h1>
+        </div>
+        <div data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+            <hr class="about-separator" />
+        </div>
+        <div class="projects-grid">
+            <!-- first card -->
+            <div class="card-wrapper one" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
+                <div class="card-top project-tile">
+                    <img class="project-image" src="https://iili.io/JXR6MDQ.png" />
+                </div>
+                <div class="card-bottom">
+                    <span class="top-text">Task Management App</span><br>
+                    <span class="bottom-text">Flutter</span>
+                    <br>
+                    <a href="https://codepen.io/AJ-Wynn/full/ZEPoQgK" target="_blank">
+                        <button class="project-button">Full Project</button>
+                    </a>
+                </div>
+            </div>
+            <!-- second card -->
+            <div class="card-wrapper two" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+                <div class="card-top project-tile">
+                    <img class="project-image" src="https://iili.io/J0knHyG.png" />
+                </div>
+                <div class="card-bottom">
+                    <span class="top-text">Product Landing Page<br>Clone</span><br>
+                    <span class="bottom-text">HTML / CSS / JavaScript</span>
+                    <br>
+                    <a href="https://codepen.io/AJ-Wynn/full/ZEPoQgK" target="_blank">
+                        <button class="project-button">Full Project</button>
+                    </a>
+                </div>
+            </div>
+            <!-- third card -->
+            <div class="card-wrapper three" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                <div class="card-top project-tile">
+                    <img class="project-image" src="https://iili.io/J0kz19e.png" />
+                </div>
+                <div class="card-bottom">
+                    <span class="top-text">Tribute Page</span><br>
+                    <span class="bottom-text">HTML / CSS</span>
+                    <br>
+                    <a href="https://codepen.io/AJ-Wynn/full/XWGqWmG" target="_blank">
+                        <button class="project-button">Full Project</button>
+                    </a>
+                </div>
+            </div>
+            <!-- fourth card -->
+            <div class="card-wrapper four" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
+                <div class="card-top project-tile">
+                    <img class="project-image" src="https://iili.io/J0kTLjs.png" />
+                </div>
+                <div class="card-bottom">
+                    <span class="top-text">Survey Form</span><br>
+                    <span class="bottom-text">HTML / CSS</span>
+                    <br>
+                    <a href="https://codepen.io/AJ-Wynn/full/JjzvjPg" target="_blank">
+                        <button class="project-button">Full Project</button>
+                    </a>
+                </div>
+            </div>
+            <!-- fifth card -->
+            <div class="card-wrapper five" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                <div class="card-top project-tile">
+                    <img class="project-image" src="https://iili.io/J0kRoTF.png" />
+                </div>
+                <div class="card-bottom">
+                    <span class="top-text">Technical Documentation<br> Page Clone</span><br>
+                    <span class="bottom-text">HTML / CSS</span>
+                    <br>
+                    <a href="https://codepen.io/AJ-Wynn/full/vYPjLPv" target="_blank">
+                        <button class="project-button">Full Project</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div id="show-all">
+            <a href="https://codepen.io/AJ-Wynn" target="_blank">
+                <button class="show-all-button">Show all &#10095;</button>
+            </a>
+        </div>
+
+    </section>
+    <section id="contact">
+        <div data-aos="fade-right" data-aos-duration="1000">
+            <h1>CONTACT</h1>
+        </div>
+        <div data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200">
+            <hr class="about-separator" />
+        </div>
+        <div class="contact-container" data-aos="fade-up" data-aos-duration="1000">
+            <form action="https://api.web3forms.com/submit" method="POST" class="contact-left">
+                <input type="hidden" name="access_key" value="01bba46e-44f6-48d5-bb6c-3169a84568f5">
+                <input type="text" name="name" placeholder="Name" class="contact-inputs" required>
+                <input type="email" name="email" placeholder="Enter Email" class="contact-inputs" required>
+                <textarea name="message" placeholder="Your Message" class="contact-inputs" required></textarea>
+                <div class="submit-button">
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+
+    </section>
+    <footer>
+        <div class="links-wrap">
+            <a id="profile-link" target="_blank" href="https://github.com/AJ-Wynn" class="fa fa-github fa-2x"></a>
+            <a target="_blank" href="mailto:andrew12.wynn@gmail.com" class="fa fa-envelope-o fa-2x"></a>
+            <a target="_blank" href="https://www.linkedin.com/in/andrew-wynn-330770157/"
+                class="fa fa-linkedin fa-2x"></a>
+            <a target="_blank" href="https://www.freecodecamp.org/fccfb6b9b6a-a215-4b58-93eb-713baa5cb345"
+                class="fa fa-free-code-camp fa-2x"></a>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
+</body>
+
+</html>
