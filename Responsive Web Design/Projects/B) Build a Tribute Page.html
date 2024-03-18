@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="freeCodeCamp Tribute Page practice project" />
+  <title>Tribute Page</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    @media (prefers-reduced-motion: no-preference) {
+      * {
+        scroll-behavior: smooth;
+      }
+    }
+
+    html {
+      background-color: white;
+    }
+
+    body {
+      font-family: Garamond (serif);
+      background-color: #D5E7DE;
+      margin: 10px;
+      padding: 20px;
+      border-radius: 15px;
+    }
+
+    header {
+      width: 100%
+    }
+
+    img {
+      display: block;
+      width: 70%
+    }
+
+    #image,
+    #portrait {
+      height: auto;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+
+    }
+
+    h1 {
+      margin: 0 auto;
+      text-align: center;
+      font-size: 3rem;
+    }
+
+    main h1 {
+      margin-top: 10px;
+      font-size: 2.4rem;
+    }
+
+
+    header ul {
+      display: flex;
+      width: 40%;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin: 15px auto;
+    }
+
+    li>a {
+      text-decoration: none;
+      color: black;
+    }
+
+    nav>ul>li {
+      color: #dfdfe2;
+      display: block;
+      padding: 0.4rem;
+      background-color: #C3C7D8;
+      font-size: 18px;
+      border-radius: 5px;
+
+    }
+
+    nav>ul>li:hover {
+      background-color: #B9C0DA;
+      cursor: pointer;
+      text-decoration: underline;
+      color: black;
+    }
+
+    #img-div {
+      padding: 0.4% 2%;
+      padding-top: 15px;
+      background-color: white
+    }
+
+    p {
+      text-align: center;
+      font-size: 1.3rem;
+    }
+
+    div[id="img-caption"] p {
+      font-size: 1rem;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    .bold {
+      font-weight: bold;
+    }
+
+    #tribute-info ul {
+      width: 50%;
+      margin: 0 auto;
+    }
+
+    #tribute-info li {
+      margin: 15px;
+    }
+
+    #more-tribute-info p {
+      font-weight: bold;
+      font-size: 1.3rem;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <span>
+      <h1>The father of modern vaccines</h1>
+      <nav>
+        <ul>
+          <li>
+            <a accesskey="1" href="#early-life">Early Life</a>
+          </li>
+          <li>
+            <a accesskey="2" href="#education">Education</a>
+          </li>
+          <li>
+            <a accesskey="3" href="#career">Career</a>
+          </li>
+          <li>
+            <a accesskey="4" href="#legacy">Legacy</a>
+          </li>
+        </ul>
+      </nav>
+    </span>
+
+  </header>
+  <main id="main">
+    <div class="img-container">
+      <img id="portrait"
+        src="https://arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/75EO2TROMBG3NIEBID444TMIGY.jpg"
+        alt="image of Dr. Maurice Hilleman looking through a microscope">
+    </div>
+    <h1 id="title">Dr. Maurice Hilleman</h1>
+    <p>The man whose work is estimated to save around eight million lives every year</p>
+    <div id="img-div">
+      <img id="image" src="https://mag.uchicago.edu/sites/default/files/19_Fall_Searcy_BytheDozens.jpg">
+      <div id="img-caption">
+        <p>Maurice Hilleman, PhD’44, and his flu research team at the Walter Reed Army Institute of Research in 1957.
+        </p>
+      </div>
+    </div>
+    <div id="tribute-info">
+      <section class="early-life" role="region" aria-labelledby="early-life">
+        <h2 id="early-life">Early Life</h2>
+        <ul>
+          <li><span class="bold">1919</span> - born on a farm near Miles City, Montana. His twin sister died during the
+            birth, and his mother died a few days later.</li>
+          <li><span class="bold">1927</span> - eight year-old Maurice nearly died from diphtheria, which would later be
+            virtually eradicated in the US through immunization.</li>
+        </ul>
+      </section>
+      <section class="education" role="region" aria-labelledby="education">
+        <h2 id="education">Education</h2>
+        <ul>
+          <li><span class="bold">1941</span> - graduated from Montana State University, first in his class and with a
+            degree in chemistry and microbiology. Won a full scholarship to begin graduate studies in microbiology at
+            the University of Chicago.</li>
+          <li><span class="bold">1944</span> - received his doctoral degree in microbiology. Hilleman established that
+            Chlamydia is an unusually shaped bacterium that grows only inside of cells, not a virus as had been thought.
+          </li>
+        </ul>
+      </section>
+      <section class="career" role="region" aria-labelledby="career">
+        <h2 id="career">Career</h2>
+        <ul>
+          <li><span class="bold">1944</span> - while working at E. R. Squibb and Sons, helped develop a Japanese
+            encephalitis vaccine to protect American troops in the World War II Pacific theater of operations.</li>
+          <li><span class="bold">1948</span> - appointed as chief of the Department of Respiratory Diseases at the Army
+            Medical Center (renamed the Walter Reed Army Institute of Research in 1953).</li>
+          <li><span class="bold">1957</span> - becomes director of Virus and Cell Biology Research for the Merck
+            Institute for Therapeutic Research.</li>
+          <li><span class="bold">1962</span> - Maurice Hilleman and Eugene Buynak isolate the Benoit strain of rubella
+            virus.</li>
+          <li><span class="bold">1963</span> - isolates the mumps virus from his daughter, Jeryl Lynn, during her
+            illness.</li>
+          <li><span class="bold">1968</span> - manufactured a vaccine to combat a new influenza A virus, Type A2, Hong
+            Kong strain, that had caused widespread illness in Hong Kong.</li>
+          <li><span class="bold">1971</span> - U.S. government licenses Merck’s combined trivalent measles, mumps, and
+            rubella vaccine (MMR).</li>
+          <li><span class="bold">1981</span> - Merck attenuates the Oka strain of chickenpox virus (varicella-zoster
+            virus) that would later be used in the licensed chickenpox vaccine.</li>
+        </ul>
+      </section>
+      <section class="legacy" role="region" aria-labelledby="legacy">
+        <h2 id="legacy">Legacy</h2>
+        <ul>
+          <li><span class="bold">1984</span> - officially retires from Merck but maintains regular office hours there
+            for many years and served as an advisor to the World Health Organization.</li>
+          <li><span class="bold">1988</span> - President Ronald Regan awards him the National Medal of Science, the
+            highest science award given in the U.S.</li>
+          <li><span class="bold">2005</span> - dies at the age of 85.
+          </li>
+        </ul>
+      </section>
+    </div>
+    <div id="more-tribute-info">
+      <p>If you have time, you can read more about Maurice Hilleman on his <a id="tribute-link" target="_blank"
+          href="https://en.wikipedia.org/wiki/Maurice_Hilleman">Wikipedia entry</a>.</p>
+    </div>
+  </main>
+</body>
